@@ -1,3 +1,18 @@
+*, img{
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+img, .anuncio{
+    pointer-events:none;
+}
+
+
 #app-view{
     margin-bottom: 50px;
 }
@@ -41,12 +56,12 @@ footer{
 footer div{
     margin-top: 10px;
     float: left;
-    width: 33%;
+    width: calc(33% - 2px);
     text-align: center;
 }
 
 footer div:active{
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(0,0,0,0.15);
 }
 
 footer div:nth-child(2){
@@ -58,3 +73,4 @@ footer div:nth-child(2){
 footer div img{
     max-height: 60px;
 }
+

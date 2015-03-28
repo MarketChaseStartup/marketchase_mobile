@@ -1,0 +1,50 @@
+#app-view{
+    margin-bottom: 50px;
+}
+
+.anuncio{
+    border: 5px solid;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.anuncio h1{
+    margin-top: 0px;
+}
+
+.anuncio img{
+    width: 100%;
+    max-height: 640px;
+}
+
+.anuncio div{
+    font-size: 18px;
+    clear: both;
+}
+
+.anuncio span{
+    font-size: 16px;
+    float: right;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 80px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.8);
+}
+
+footer div{
+    padding-top: 10px;
+    float: left;
+    width: 33%;
+    text-align: center;
+}
+
+footer div img{
+    max-height: 60px;
+}

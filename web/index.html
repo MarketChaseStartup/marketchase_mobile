@@ -10,42 +10,9 @@
   </head>
   <body>
 
-<div id="app-view" >
-  <div class="anuncio-lista" >
-      <section class="anuncio" >
-        <h1>Nome da Loja</h1>
-        <img src="car.png" >
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec,
-          mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor se
-        </div>
-        <span>Nome da Categoria</span>
-        <div></div>
-      </section>
+  <div id="app-view" ></div>
 
-       <section class="anuncio" >
-        <h1>Nome da Loja</h1>
-        <img src="car.png" >
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec,
-          mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor se
-        </div>
-        <span>Nome da Categoria</span>
-        <div></div>
-      </section>
 
-       <section class="anuncio" >
-        <h1>Nome da Loja</h1>
-        <img src="car.png" >
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec,
-          mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor se
-        </div>
-        <span>Nome da Categoria</span>
-        <div></div>
-      </section>
-  </div>
-</div>
 <footer>
   <div><img src="img/fav_icon.png"></div>
   <div><img src="img/mkc_logo_icon.png"></div>
@@ -56,6 +23,8 @@
 </html>
 
 <script src="script/socketio.js"></script>
+<script src="script/react.js"></script>
+<script src="script/JSXTransformer.js"></script>
 <script>
   var socket = io();
   var car = document.getElementById('car');
@@ -67,6 +36,51 @@
       case 'bottom': CarController.bottom();break;
     }
   });
+</script>
+
+
+<script type="text/jsx">
+/* @jsx React.DOM */
+
+var AnuncioLista = React.createClass({
+
+    getInitialState: function(){
+        return {
+          anuncios: [
+            {descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec,mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor se",categoria: "brinquedos"},
+            {descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec,mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor se",categoria: "brinquedos"},
+            {descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec,mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor se",categoria: "brinquedos"}
+          ]
+        };
+    },
+    render: function () {
+        return (
+          <div className="anuncio-lista" >
+            {
+              this.state.anuncios.map(function(anuncio){
+                return <Anuncio anuncio={anuncio} />
+              })
+            }
+          </div>
+        );
+    }
+});
+
+var Anuncio = React.createClass({
+    render: function(){
+        return(
+          <section className="anuncio" >
+            <h1>Nome da Loja</h1>
+            <img src="car.png"/>
+            <div>{this.props.anuncio.descricao}</div>
+            <span>{this.props.anuncio.categoria}</span>
+            <div></div>
+          </section>
+        );
+    }
+});
+ 
+React.render(<AnuncioLista />,document.getElementById('app-view'));
 
 
 </script>

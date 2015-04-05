@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WebSocket Car</title>
+    <title>MarketChase</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
@@ -21,7 +21,7 @@
 
   </body>
 </html>
-
+<script src="script/jquery-1.11.2"></script>
 <script src="script/socketio.js"></script>
 <script src="script/react.js"></script>
 <script src="script/JSXTransformer.js"></script>
@@ -43,14 +43,9 @@
 /* @jsx React.DOM */
 
 var AnuncioLista = React.createClass({
-
     getInitialState: function(){
         return {
-          anuncios: [
-            {descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec,mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor se",categoria: "brinquedos"},
-            {descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec,mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor se",categoria: "brinquedos"},
-            {descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec,mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor se",categoria: "brinquedos"}
-          ]
+          anuncios: []
         };
     },
     render: function () {
@@ -63,6 +58,22 @@ var AnuncioLista = React.createClass({
             }
           </div>
         );
+    },
+    componentDidMount: function() {
+      var that = this;
+      $.ajax({
+        url: "http://localhost:8080/marketchase/anuncio",
+        success: function( data ) {
+          for(var i = 0; i < data.length; i++){
+            that.addAnuncio(data[i]);
+          }
+        }
+      });
+    },
+    addAnuncio: function(anuncio){
+        var anuncios = this.state.anuncios;
+        anuncios.unshift(anuncio);
+        this.setState({anuncios: anuncios});
     }
 });
 

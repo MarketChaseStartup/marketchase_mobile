@@ -82,7 +82,7 @@ var Anuncio = React.createClass({
         return(
           <section className="anuncio" >
             <h1>Nome da Loja</h1>
-            <img src="car.png"/>
+            <img src={this.props.anuncio.caminhoArquivo} />
             <div>{this.props.anuncio.descricao}</div>
             <span>{this.props.anuncio.categoria}</span>
             <div></div>
